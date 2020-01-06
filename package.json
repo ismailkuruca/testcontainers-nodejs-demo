@@ -1,0 +1,28 @@
+{
+  "name": "testcontainers-demo",
+  "version": "1.0.0",
+  "description": "An example of elegant integration testing with testcontainers",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "jest"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "coveragePathIgnorePatterns": [
+      "/node_modules/"
+    ]
+  },
+  "author": "ismailkuruca",
+  "dependencies": {
+    "express": "^4.16.4",
+    "knex": "^0.16.5",
+    "objection": "^1.6.8",
+    "pg": "^7.10.0"
+  },
+  "devDependencies": {
+    "jest": "^24.9.0",
+    "supertest": "^4.0.2",
+    "testcontainers": "^2.2.0"
+  }
+}
