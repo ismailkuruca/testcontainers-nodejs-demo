@@ -1,12 +1,10 @@
-const express = require('express')
-const port = process.env.PORT || 3000
+const express = require("express");
+const port = process.env.PORT || 3000;
 
-const app = express()
+let app = express();
 
-app.use('/api', require('./api/todos').router)
+app.use("/api", require("./api/todos").router);
 
-app.listen(port, () => {
-	console.log('Listening on port: ' + port)
-})
+app = app.listen(port, () => {});
 
-module.exports = app
+module.exports = app;

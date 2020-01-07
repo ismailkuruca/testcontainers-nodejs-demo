@@ -41,7 +41,7 @@ describe("Get Todos", () => {
   it("should return specific todo with id", async done => {
     const res = await request(app).get("/api/todos/234");
     expect(res.statusCode).toEqual(200);
-    expect(res.body).toEqual([{ id: 234, creator: "456", todo_items: [] }]);
+    expect(res.body).toEqual({ id: 234, creator: "456", todo_items: [] });
     done();
   });
 });

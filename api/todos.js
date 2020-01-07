@@ -1,25 +1,17 @@
-const express = require('express')
-const router = express.Router()
+const express = require("express");
+const router = express.Router();
 
-const TodoList = require('../models/TodoList')
+const getAllTodos = require("../middlewares/getAllTodos");
+const getTodoById = require("../middlewares/getTodoById");
 
-router.get('/todos', (req, res) => {
-    TodoList.query()
-        .then(todos => {
-            res.json(todos)
-        })
-})
+router.get("/todos", getAllTodos, (req, res) => {
+  res.json(req.getAllTodosResponse);
+});
 
-router.get('/todos/:id', (req, res) => {
-    let id = parseInt(req.params.id)
-    TodoList.query()
-        .where('id', id)
-        .withGraphFetched('todo_items')
-        .then(todos => {
-            res.json(todos)
-        })
-})
+router.get("/todos/:id", getTodoById, (req, res) => {
+  res.json(req.getTodoByIdResponse);
+});
 
 module.exports = {
-    router: router
-}
+  router: router
+};
