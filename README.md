@@ -14,7 +14,17 @@ Main takeaway is building a very simple integration test harness to test/validat
 
 ## Pros and Cons
 
-TBD
+Pros:
+
+- Increased visibility on potential problems that can't be unit tested efficiently. e.g Connection configurations, Deadlocks, Migrations etc.
+- Using the actual DB technology and versioning of staging/production environments which increases confidence on the code you write.
+- Super easy to integrate into CI/CD systems since all orchestrations are done through the code.
+- Easier for onboarding developers that has no prior docker knowledge on to the project, as opposed to maintaining `compose` files.
+
+Cons:
+
+- Almost an order of magnitude slower in terms of test suite initalisation since it requires a fully fledged container to be booted up and be ready.
+- Somewhat increased complexity in the test code, although this is to be expected when we go `up` in the testing pyramid.
 
 ## How to use it
 
