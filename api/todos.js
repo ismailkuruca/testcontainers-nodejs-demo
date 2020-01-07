@@ -14,7 +14,7 @@ router.get('/todos/:id', (req, res) => {
     let id = parseInt(req.params.id)
     TodoList.query()
         .where('id', id)
-        .eager('todo_items')
+        .withGraphFetched('todo_items')
         .then(todos => {
             res.json(todos)
         })
