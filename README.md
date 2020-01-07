@@ -30,40 +30,40 @@ Cons:
 
 Booting up a postgres container with `testcontainers` is as easy as the following:
 
-`javascript
-const { GenericContainer } = require("testcontainers");
+```javascript
+const { GenericContainer } = require("testcontainers");  
 const pgContainer = new GenericContainer("postgres").start();
-`
+```
 
 ---
 
 You can pass additional parameters to set up postgres related environment variables (like username, password, db name etc) and expose ports from the container like this:
 Please keep in mind that the newly created container like this; will start on a random port and we need to dynamically override our port definition in our `knexfile`.
 
-`javascript
-const pgContainer = new GenericContainer("postgres")
-    .withEnv("POSTGRES_USER", "test")
-    .withEnv("POSTGRES_PASSWORD", "test")
-    .withEnv("POSTGRES_DB", "postgres")
-    .withExposedPorts(5432)
-    .start();
-`
+```javascript
+const pgContainer = new GenericContainer("postgres")  
+    .withEnv("POSTGRES_USER", "test")  
+    .withEnv("POSTGRES_PASSWORD", "test")  
+    .withEnv("POSTGRES_DB", "postgres")  
+    .withExposedPorts(5432)  
+    .start();  
+```
 
 ---
 
 After we start our postgres instance, since it is a brand new empty database, we probably would like to run all of our migrations on it.
 
-`javascript
+```javascript
 require("knex")(yourKnexConfig).migrate.latest();
-`
+```
 
 ---
 
 Once we are done with our test, we can and should destroy the container to save up resources.
 
-`javascript
+```javascript
 pgContainer.stop();
-`
+```
 
 ---
 
@@ -78,22 +78,22 @@ One very important thing to keep in mind is; since we are creating the database 
 Although this is against testing principles, it was an optimisation to gain much better execution time (remember, booting up an instance can take ~5 secs on an average).
 One very easy thing to do prevent data leaks between tests is cleaning up the database after/before each test and loading up new dummy data for that particular test.
 
-`javascript
-describe("Get Todos", () => {
-  beforeEach(async () => { //inserting some dummy data to be used in the following test.
-    await knex.raw("insert into todo_list values(123, '345');");
-    await knex.raw("insert into todo_list values(234, '456');");
-  });
-  afterEach(async () => { //cleaning up the database to be a `good neighbour` and prevent cross contamination between tests.
-    await knex.raw("delete from todo_list");
-  });
-  it("should return all todos", async done => {
-    const res = await request(app).get("/api/todos");
-    expect(res.statusCode).toEqual(200);
-    expect(res.body.length).toEqual(2);
-    done();
-  });
-`
+```javascript
+describe("Get Todos", () => {  
+  beforeEach(async () => { //inserting some dummy data to be used in the following test.  
+    await knex.raw("insert into todo_list values(123, '345');");  
+    await knex.raw("insert into todo_list values(234, '456');");  
+  });  
+  afterEach(async () => { //cleaning up the database to be a `good neighbour` and prevent cross contamination between tests.  
+    await knex.raw("delete from todo_list");  
+  });  
+  it("should return all todos", async done => {  
+    const res = await request(app).get("/api/todos");  
+    expect(res.statusCode).toEqual(200);  
+    expect(res.body.length).toEqual(2);  
+    done();  
+  });  
+```
 
 Enjoy!
 
