@@ -1,5 +1,7 @@
 # Simple Integration Testing of an Express/Knex/Objection app via `testcontainers`
 
+Please read the reasoning behind it here https://medium.com/@ismailkuruca/how-to-effectively-write-integration-tests-with-nodejs-knex-postgres-bcaa60022080.
+
 A very simple todo list app using postgres as the default DB engine and provides functionalities with Knex/Objection while serving them under an Express App.
 Main takeaway is building a very simple integration test harness to test/validate the provided functionality where unit testing falls short.
 
