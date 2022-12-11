@@ -15,7 +15,7 @@
   },
   "author": "ismailkuruca",
   "dependencies": {
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "knex": "^0.20.7",
     "objection": "^2.0.10",
     "pg": "^7.17.0"
