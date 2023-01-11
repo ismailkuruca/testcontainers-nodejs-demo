@@ -16,7 +16,7 @@
   "author": "ismailkuruca",
   "dependencies": {
     "express": "^4.17.1",
-    "knex": "^0.20.7",
+    "knex": "^2.4.0",
     "objection": "^2.0.10",
     "pg": "^7.17.0"
   },
